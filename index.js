@@ -1,33 +1,34 @@
-// Faça um script de javascript que gerencia (CRUD)
-// as atividades que o usuário fez nas férias,
-// o usuário diz o dia e
-// as atividades que realizou no dia.
-
 const prompt = require("prompt-sync")();
-const crud = require("./crud.js");
-
-let atividade = {
-  data: {
-    dia: [],
-    atividade: [],
-  },
-};
+const crud = require("./Crud.js");
 
 function mostrarMenu() {
   console.log(
-    "Bem vindo as anotações das suas Férias, escolha uma opção:\n1. Criar  ferias  \n2. Ler minhas Férias \n3. Atualizar Férias \n4. Excluir Férias\n5. Sair"
+    "Bem-vindo às anotações das suas Férias, escolha uma opção:\n1. Criar Férias\n2. Ler minhas Férias\n3. Atualizar Férias\n4. Excluir Férias\n5. Sair"
   );
-  let ferias = +prompt("Digite aqui a opção desejada: ");
-  return ferias;
+  let opcao = +prompt("Digite aqui a opção desejada: ");
+  return opcao;
 }
+
 function processarOperacao(opcao) {
-  if (opcao === 1) {
-  } else if (opcao === 2) {
-  } else if (opcao === 3) {
-  } else if (opcao === 4) {
-  } else if (opcao === 5 || opcao == "Sair") {
-    console.log("Saindo...");
-    process.exit();
+  switch (opcao) {
+    case 1:
+      crud.lerDados();
+      break;
+    case 2:
+      crud.MostrarDados();
+      break;
+    case 3:
+      crud.AtualizarDados();
+      break;
+    case 4:
+      crud.ExcluirDados();
+      break;
+    case 5:
+      console.log("Saindo...");
+      process.exit();
+      break;
+    default:
+      console.log("Opção inválida. Tente novamente.");
   }
 }
 
