@@ -3,14 +3,13 @@ let data_ferias, atividades_ferias;
 const prompt = require("prompt-sync")();
 
 function lerDados() {
-  estado = "adicionar_dia";
+  let estado = "adicionar_dia";
   console.log("Digite a data que deseja registar:");
   if (estado === "adicionar_dia") {
-    data_ferias = prompt;
+    data_ferias = prompt("Data: ");
     estado = "atividade_ferias";
     console.log("Digite as atividades realizadas:");
-  } else if (estado === "atividade_ferias") {
-    atividades_ferias = prompt;
+    atividades_ferias = prompt("Atividades: ");
     estado = "adicionar_data";
     ferias.push({
       data_ferias: data_ferias,
@@ -18,6 +17,7 @@ function lerDados() {
     });
   }
 }
+
 function MostrarDados() {
   if (ferias.length === 0) {
     console.log("Nenhuma ferias para se lembrar.");
@@ -30,20 +30,41 @@ function MostrarDados() {
     }
   }
 }
+
 function AtualizarDados() {
-  estado = "atualizar_ferias";
   console.log("Ferias agendadas:");
-  for (let datas of ferias) {
+  for (let i = 0; i < ferias.length; i++) {
     console.log(
-      `Data das Férias: ${datas.data_ferias}, Atividades Realizadas: ${datas.atividades_ferias}`
+      `${i + 1}. Data das Férias: ${ferias[i].data_ferias}, Atividades Realizadas: ${ferias[i].atividades_ferias}`
     );
   }
-  console.log("Digite a data das ferias que deseja atualizar:");
+  const indice = +prompt("Digite o número da férias que deseja atualizar: ") - 1;
+  if (indice >= 0 && indice < ferias.length) {
+    const novaData = prompt("Digite a nova data: ");
+    const novasAtividades = prompt("Digite as novas atividades: ");
+    ferias[indice] = {
+      data_ferias: novaData,
+      atividades_ferias: novasAtividades,
+    };
+  } else {
+    console.log("Número inválido.");
+  }
 }
 
 function ExcluirDados() {
-  estado = "excluir_ferias";
-  console.log("Digite a data que deseja excluir:");
+  console.log("Ferias agendadas:");
+  for (let i = 0; i < ferias.length; i++) {
+    console.log(
+      `${i + 1}. Data das Férias: ${ferias[i].data_ferias}, Atividades Realizadas: ${ferias[i].atividades_ferias}`
+    );
+  }
+  const indice = +prompt("Digite o número da férias que deseja excluir: ") - 1;
+  if (indice >= 0 && indice < ferias.length) {
+    ferias.splice(indice, 1);
+    console.log("Férias excluídas com sucesso.");
+  } else {
+    console.log("Número inválido.");
+  }
 }
 
 module.exports = {
