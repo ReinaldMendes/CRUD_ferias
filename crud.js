@@ -2,7 +2,7 @@ const ferias = [];
 let data_ferias, atividades_ferias;
 const prompt = require("prompt-sync")();
 
-function lerDados() {
+const adicionarDados = () => {
   let estado = "adicionar_dia";
   console.log("Digite a data que deseja registar:");
   if (estado === "adicionar_dia") {
@@ -16,7 +16,7 @@ function lerDados() {
       atividades_ferias: atividades_ferias,
     });
   }
-}
+};
 
 function MostrarDados() {
   if (ferias.length === 0) {
@@ -35,10 +35,13 @@ function AtualizarDados() {
   console.log("Ferias agendadas:");
   for (let i = 0; i < ferias.length; i++) {
     console.log(
-      `${i + 1}. Data das Férias: ${ferias[i].data_ferias}, Atividades Realizadas: ${ferias[i].atividades_ferias}`
+      `${i + 1}. Data das Férias: ${
+        ferias[i].data_ferias
+      }, Atividades Realizadas: ${ferias[i].atividades_ferias}`
     );
   }
-  const indice = +prompt("Digite o número da férias que deseja atualizar: ") - 1;
+  const indice =
+    +prompt("Digite o número da férias que deseja atualizar: ") - 1;
   if (indice >= 0 && indice < ferias.length) {
     const novaData = prompt("Digite a nova data: ");
     const novasAtividades = prompt("Digite as novas atividades: ");
@@ -55,7 +58,9 @@ function ExcluirDados() {
   console.log("Ferias agendadas:");
   for (let i = 0; i < ferias.length; i++) {
     console.log(
-      `${i + 1}. Data das Férias: ${ferias[i].data_ferias}, Atividades Realizadas: ${ferias[i].atividades_ferias}`
+      `${i + 1}. Data das Férias: ${
+        ferias[i].data_ferias
+      }, Atividades Realizadas: ${ferias[i].atividades_ferias}`
     );
   }
   const indice = +prompt("Digite o número da férias que deseja excluir: ") - 1;
@@ -68,7 +73,7 @@ function ExcluirDados() {
 }
 
 module.exports = {
-  lerDados,
+  adicionarDados,
   MostrarDados,
   AtualizarDados,
   ExcluirDados,

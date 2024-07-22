@@ -1,5 +1,5 @@
 const prompt = require("prompt-sync")();
-const crud = require("./Crud.js");
+const crud = require("./crud.js");
 
 function mostrarMenu() {
   console.log(
@@ -12,7 +12,7 @@ function mostrarMenu() {
 function processarOperacao(opcao) {
   switch (opcao) {
     case 1:
-      crud.lerDados();
+      crud.adicionarDados();
       break;
     case 2:
       crud.MostrarDados();
